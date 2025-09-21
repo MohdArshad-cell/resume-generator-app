@@ -1,0 +1,437 @@
+/* === AplyEase General Stylesheet (v2 - Cyan Theme) === */
+
+/* === 1. Global Variables & Base Styles === */
+
+:root {
+    --dark-bg: #0A0F1E; /* Dark blue background */
+    --card-bg: #12182B; /* Slightly lighter card background */
+    --border-color: rgba(67, 97, 255, 0.2);
+    --text-primary: #FFFFFF;
+    --text-secondary: #8A93B1;
+    --accent-cyan: #00F6FF;
+    --accent-purple: #6248FF;
+    --glow-color: rgba(0, 246, 255, 0.5);
+}
+/* === Aurora Background Animation === */
+@keyframes moveInCircle {
+  0% { transform: rotate(0deg); }
+  50% { transform: rotate(180deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes moveVertical {
+  0% { transform: translateY(-50%); }
+  50% { transform: translateY(50%); }
+  100% { transform: translateY(-50%); }
+}
+
+@keyframes moveHorizontal {
+  0% { transform: translateX(-50%); }
+  50% { transform: translateX(50%); }
+  100% { transform: translateX(-50%); }
+}
+
+.background-aurora {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  overflow: hidden;
+}
+
+.background-aurora::before,
+.background-aurora::after {
+  content: '';
+  position: absolute;
+  width: 60vmax; /* Large size relative to viewport */
+  height: 60vmax;
+  border-radius: 50%;
+  background: rgba(0, 246, 255, 0.6); /* Cyan color */
+  filter: blur(10vmax); /* Strong blur effect */
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  z-index: -1;
+}
+
+/* One blob moves in a circle */
+.background-aurora::before {
+  top: 50%;
+  left: 50%;
+  transform-origin: 20vmax 20vmax;
+  animation-name: moveInCircle;
+  animation-duration: 25s;
+}
+
+/* Another blob moves horizontally */
+.background-aurora::after {
+  top: 50%;
+  left: 20%;
+  background: rgba(98, 72, 255, 0.6); /* Purple color */
+  transform-origin: -10vmax -10vmax;
+  animation-name: moveHorizontal;
+  animation-duration: 30s;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    padding-top: 0px; /* Space for fixed navbar */
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--dark-bg);
+    color: var(--text-primary);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  overflow: hidden
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    box-sizing: border-box;
+}
+.page-container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+
+    
+}
+.content-wrapper {
+    flex: 1; /* This is the key: it makes the main content grow */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* This helps center content vertically */
+}
+/* === 2. Typography === */
+.section-title {
+    text-align: center;
+    font-size: 2.8rem;
+    font-weight: 700;
+    margin-bottom: 4rem;
+    color: var(--text-primary);
+}
+
+/* === 3. Buttons === */
+.btn {
+    display: inline-block;
+    text-decoration: none;
+    padding: 0.75rem 2rem;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border: 1px solid transparent;
+    cursor: pointer;
+}
+/* Main solid button (e.g., Hero CTA) */
+.btn-primary {
+    background-color: var(--card-bg);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+}
+.btn-primary:hover {
+    border-color: var(--accent-cyan);
+    color: var(--accent-cyan);
+}
+/* Outline button (e.g., Navbar) */
+.btn-outline {
+    background-color: transparent;
+    color: var(--accent-cyan);
+    border: 1px solid var(--accent-cyan);
+}
+.btn-outline:hover {
+    background-color: var(--accent-cyan);
+    color: var(--dark-bg);
+    box-shadow: 0 0 15px var(--glow-color);
+}
+
+
+/* === 4. Navigation Bar === */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 1.25rem 0;
+    background: rgba(10, 15, 30, 0.6);
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+    border-bottom: 1px solid var(--border-color);
+}
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.nav-logo {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    text-decoration: none;
+    letter-spacing: 1px;
+}
+.nav-links {
+    display: flex;
+    gap: 2.5rem;
+}
+.nav-links a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+.nav-links a:hover {
+    color: var(--text-primary);
+}
+
+/* === 5. Footer === */
+.footer {
+    padding: 4rem 0;
+    background-color: transparent;
+    border-top: 1px solid var(--border-color);
+    text-align: center;
+}
+.footer-logo {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    text-decoration: none;
+    margin-bottom: 1rem;
+    display: inline-block;
+    letter-spacing: 1px;
+}
+.footer-links { margin: 1.5rem 0; }
+.footer-links a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    margin: 0 1rem;
+    transition: color 0.3s ease;
+}
+.footer-links a:hover { color: var(--text-primary); }
+.footer-copyright {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+/* === Main App Layout === */
+.app-container {
+  display: grid;
+  grid-template-columns: 250px 1fr 1fr; /* Sidebar-Editor-Preview */
+  grid-template-rows: 1fr;
+  height: 100vh;
+  width: 100%;
+  gap: 1.5rem;
+  padding: 1.5rem;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.nav-panel, .editor-panel, .preview-panel {
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 1rem;
+  overflow-y: auto;
+}
+
+
+/* === Navigation Panel Styles === */
+.nav-panel {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.nav-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.nav-item {
+  padding: 1rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: all 0.2s ease-in-out;
+}
+
+.nav-item:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+  color: var(--accent-cyan);
+}
+
+.make-button {
+  width: 100%;
+  padding: 1rem;
+  font-size: 1.1rem;
+}
+
+.nav-item.active {
+  background-color: rgba(0, 246, 255, 0.1);
+  color: var(--accent-cyan);
+}
+
+/* === Form Group Styles === */
+.form-section {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.form-group {
+  padding: 1.5rem;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.form-section h2 {
+  margin: 0;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"] {
+  width: 100%;
+  padding: 0.75rem;
+  background-color: var(--dark-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  color: var(--text-primary);
+  font-size: 1rem;
+  box-sizing: border-box;
+}
+
+input[type="text"]:focus {
+  outline: none;
+  border-color: var(--accent-cyan);
+}
+
+.btn-remove {
+  background: transparent;
+  border: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+  text-align: right;
+  padding: 0.5rem 0;
+}
+
+.btn-remove:hover {
+  color: #ff5c5c; /* A red color for deletion */
+}
+
+
+textarea {
+  width: 100%;
+  padding: 0.75rem;
+  background-color: var(--dark-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  color: var(--text-primary);
+  font-size: 1rem;
+  font-family: 'Poppins', sans-serif;
+  box-sizing: border-box;
+  resize: vertical;
+}
+
+textarea:focus {
+  outline: none;
+  border-color: var(--accent-cyan);
+}
+
+
+.download-links-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.download-link {
+  text-align: center;
+}
+
+
+/* === Template Gallery Styles === */
+.template-gallery {
+  padding: 1rem;
+}
+
+.template-grid {
+  display: grid;
+  /* Create a responsive grid that fits as many columns as possible */
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+}
+
+.template-card {
+  background: var(--dark-bg); /* Use a darker background for contrast */
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  overflow: hidden; /* Hide anything that goes outside the rounded corners */
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  text-align: center;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.template-card:hover {
+  transform: translateY(-5px); /* Lift effect on hover */
+  border-color: var(--accent-cyan);
+}
+
+.template-card.active {
+  border-color: var(--accent-cyan);
+  box-shadow: 0 0 20px var(--glow-color); /* Stronger glow for active template */
+}
+
+/* This is the container for the image or placeholder */
+.template-preview-container {
+  background-color: #ffffff; /* A white paper background */
+  padding: 1rem;
+  box-sizing: border-box;
+  /* THIS IS THE KEY FIX: Forces a consistent shape like a document */
+  aspect-ratio: 8.5 / 11; 
+}
+
+.template-preview-img {
+  width: 100%;
+  height: 100%;
+  /* UPDATED: 'contain' fits the whole image, 'cover' crops it */
+  object-fit: contain; 
+  object-position: top; /* This keeps it aligned to the top */
+}
+
+/* NEW: A style for when a preview image is not available */
+.template-preview-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #333;
+  font-size: 0.9rem;
+  font-style: italic;
+}
+
+.template-card p {
+  font-weight: 600;
+  padding: 1rem;
+  margin: 0;
+  background-color: var(--card-bg);
+  color: var(--text-primary);
+}

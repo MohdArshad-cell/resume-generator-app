@@ -1,0 +1,21 @@
+# Node.js (Frontend)
+resume-builder-frontend/node_modules/
+resume-builder-frontend/build/
+.DS_Store
+
+# Python (Engine)
+resume-engine/venv/
+resume-engine/__pycache__/
+resume-engine/app/__pycache__/
+*.pyc
+
+# Java / Maven (Orchestrator)
+generator/target/
+generator/.mvn/
+generator/*.iml
+*.class
+*.log
+
+# IDE files
+.vscode/
+.idea/

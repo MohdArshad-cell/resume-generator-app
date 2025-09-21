@@ -1,0 +1,56 @@
+{
+    "personal_info": {
+        "full_name": "Mohd Arshad",
+        "address": "House No. 633/060 Govind Vihar Kamta",
+        "email": "arshadmohd8574@gmail.com",
+        "phone": "07887096421",
+        "github_handle": "",
+        "linkedin_handle": "",
+        "portfolio_url": "",
+        "extra_info": ""
+    },
+    "education": [
+        {
+            "degree": "Bachelor of Technology in Information Technology",
+            "institution": "Babu Banarsi Das Northern India Institute Of Technology",
+            "start_year": "Sep 2022",
+            "end_year": "Aug 2026",
+            "gpa": "7.6 / 10.0"
+        }
+    ],
+    "work_experience": [
+        {
+            "job_title": " Backend Developer & Resume Specialist",
+            "company_name": "AplyEase",
+            "location": "Remote",
+            "start_date": "Mar 2025",
+            "end_date": "Present",
+            "description_points": [
+                "Spearheaded backend development on the main company platform, engineering 3+ core AI agents including an ATS score checker, a cover letter generator, and a resume tailor using Java and REST APIs.",
+                "Revamped and optimized over 1,000+ client resumes, systematically elevating average ATS scores from under 50% to over 90%, directly leading to a significant increase in client interview callbacks.",
+                "Championed remote team collaboration and accelerated project delivery by leveraging a suite of AI tools (ForgeHire, ChatGPT, Gemini), streamlining workflows and improving team efficiency by over 30%"
+            ]
+        }
+    ],
+    "projects": [
+        {
+            "project_name": "AI Resume Maker",
+            "start_date": " Jul 2025",
+            "end_date": "Aug 2025",
+            "tech_stack": "Java, Servlets, JSP, Ollama, LaTeX, MySQL",
+            "description_points": [
+                "Orchestrated a full-stack resume platform using a 4-tier Java architecture, pioneering the integration of a local Llama LLM to guarantee 100% data privacy by eliminating external API calls.",
+                "Devised a sophisticated document generation engine using LaTeX to programmatically render AI-driven content into pixel-perfect, ATS-compliant PDF resumes, reducing manual formatting effort by 100%.",
+                "Engineered a cohesive end-to-end user journey, consolidating a multi-stage process of data entry, AI processing, and PDF delivery into a single, seamless workflow managed by a robust Java backend."
+            ]
+        }
+    ],
+    "skills": {
+        "languages": " Java (Core & Advanced), Python, SQL, C",
+        "frameworks": " HTML5, CSS3, JavaScript (ES6+), React, Redux, Bootstrap, Responsive Design Spring Boot",
+        "databases": " LLM Integration, AI Agent Development, Ollama, Gemini, ChatGPT",
+        "tools": "",
+        "cloud_devops": "",
+        "certifications": ""
+    }
+}

@@ -102,36 +102,58 @@ const ResumeBuilderPage: React.FC = () => {
    * Fetches the download links for all file types.
    */
   const handleMakeResume = async () => {
+    // 1. Set loading state and clear any previous errors
     setIsLoading(true);
-    setDownloadLinks(null);
     setErrorMessage('');
-    
+
+    // 2. Prepare the data payload for the API
+    // This transforms the form data into the format the backend expects
     const payload = {
         template_name: selectedTemplate.toLowerCase().replace(/ /g, '_'),
         resume_data: {
             ...resumeData,
-            work_experience: resumeData.work_experience.map(exp => ({ ...exp, description_points: exp.description_points.split('\n').filter(p => p.trim() !== '') })),
-            // FIX: Changed 'data.projects' to 'resumeData.projects'
-            projects: resumeData.projects.map(proj => ({ ...proj, description_points: proj.description_points.split('\n').filter(p => p.trim() !== '') }))
-        }
+            // Convert newline-separated strings into arrays of strings
+            work_experience: resumeData.work_experience.map(exp => ({
+                ...exp,
+                description_points: exp.description_points.split('\n').filter(p => p.trim() !== ''),
+            })),
+            projects: resumeData.projects.map(proj => ({
+                ...proj,
+                description_points: proj.description_points.split('\n').filter(p => p.trim() !== ''),
+            })),
+        },
     };
 
     try {
-        const response = await axios.post(`${API_BASE_URL}/api/v1/generate`, payload);
-        const links = response.data;
-        
-        setDownloadLinks({
-            pdfUrl: API_BASE_URL + links.pdfUrl,
-            latexUrl: API_BASE_URL + links.latexUrl,
-            jsonUrl: API_BASE_URL + links.jsonUrl,
+        // 3. Make the API call, requesting the response as a 'blob'
+        const response = await axios.post(`${API_BASE_URL}/api/v1/generate`, payload, {
+            responseType: 'blob',
         });
+
+        // 4. Trigger the file download in the browser
+        const blobUrl = URL.createObjectURL(response.data);
+        const link = document.createElement('a');
+
+        link.href = blobUrl;
+        link.setAttribute('download', 'resume_files.zip'); // Set the download filename
+
+        // Append, click, and remove the link to start the download
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+
+        // Clean up the blob URL to free up memory
+        URL.revokeObjectURL(blobUrl);
+
     } catch (error) {
+        // 5. Handle any errors during the process
         console.error("Error generating resume:", error);
-        setErrorMessage('Failed to generate final resume.');
+        setErrorMessage('Failed to generate final resume files. Please try again.');
     } finally {
+        // 6. Always turn off the loading indicator
         setIsLoading(false);
     }
-  };
+};
 
   const renderActiveForm = () => {
     switch (activeSection) {

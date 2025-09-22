@@ -26,6 +26,7 @@ const initialResumeData: ResumeData = {
   achievements: [],
   certifications: [],
 };
+const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
 
 const ResumeBuilderPage: React.FC = () => {
   const [activeSection, setActiveSection] = useState('Templates');
@@ -60,7 +61,7 @@ const ResumeBuilderPage: React.FC = () => {
     };
 
     try {
-        const response = await axios.post('http://localhost:8080/api/v1/preview', payload, {
+        const response = await axios.post(`${API_BASE_URL}/api/v1/preview`, payload, {
             responseType: 'blob' 
         });
         
@@ -116,13 +117,13 @@ const ResumeBuilderPage: React.FC = () => {
     };
 
     try {
-        const response = await axios.post('http://localhost:8080/api/v1/generate', payload);
+        const response = await axios.post(`${API_BASE_URL}/api/v1/generate`, payload);
         const links = response.data;
-        const baseUrl = 'http://localhost:8080';
+        
         setDownloadLinks({
-            pdfUrl: baseUrl + links.pdfUrl,
-            latexUrl: baseUrl + links.latexUrl,
-            jsonUrl: baseUrl + links.jsonUrl,
+            pdfUrl: API_BASE_URL + links.pdfUrl,
+            latexUrl: API_BASE_URL + links.latexUrl,
+            jsonUrl: API_BASE_URL + links.jsonUrl,
         });
     } catch (error) {
         console.error("Error generating resume:", error);
